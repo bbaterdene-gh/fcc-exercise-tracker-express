@@ -18,3 +18,11 @@ exports.createUser = (req, res) => {
     }
   )
 }
+
+exports.allUsers = (req, res) => {
+  User.find({},
+    (err, users) => {
+      res.json(users)
+    }
+  )
+}
