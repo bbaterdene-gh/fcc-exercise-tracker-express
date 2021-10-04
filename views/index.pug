@@ -1,6 +1,32 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  p.text-blue-100 Welcome here
+  .flex.items-center.flex-col
+    h1.text-5xl Exercise tracker
+
+    .flex.flex-row(class="w-10/12")
+      div.my-8
+        p.font-bold GET user's exercise log:
+          span.mx-2.bg-yellow-100.font-normal GET /api/users/:_id/logs?[from][&to][&limit]
+        p.font-bold [ ]
+          span.font-normal = optional
+        p.font-bold from, to
+          span.font-normal = dates (yyyy-mm-dd);
+          span.font-bold limit
+          span.font-normal = number
+
+      .flex.flex-col.flex-grow.ml-12
+        form.bg-green-400.px-4.py-8.rounded.my-8.w-72(method="POST" action="/api/users")
+          h3.text-xl.font-bold Create new user
+          p.bg-yellow-200.mt-4.mb-2.px-2.rounded POST /api/users
+          input.w-full.rounded.my-2.px-2.leading-7.border(placeholder="username" name="username")
+          button.w-full.bg-gray-400.border-none.rounded.py-2(type="submit") Submit
+
+        form.bg-green-400.px-4.py-8.rounded.my-2.w-72
+          h3.text-xl.font-bold Add exercises
+          p.bg-yellow-200.mt-4.mb-2.px-2.rounded POST /api/users/:_id/exercises
+          input.w-full.rounded.my-2.px-2.leading-7.border(placeholder=":_id")
+          input.w-full.rounded.my-2.px-2.leading-7.border(placeholder="description*")
+          input.w-full.rounded.my-2.px-2.leading-7.border(placeholder="duration* (mins.)")
+          input.w-full.rounded.my-2.px-2.leading-7.border(placeholder="date (yyyy-mm-dd)")
+          button.w-full.bg-gray-400.border-none.rounded.py-2(type="submit") Submit
