@@ -4,13 +4,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cors = require('cors')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const exercisesRouter = require('./routes/exercises')
 
 var app = express();
-
+app.use(cors({
+  origin: "https://www.freecodecamp.org",
+}))
 // Set up mongoose connection
 const mongoose = require('mongoose')
 const mongoDBURI = process.env.MONGO_URI
