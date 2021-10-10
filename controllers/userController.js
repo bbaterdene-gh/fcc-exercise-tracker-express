@@ -22,7 +22,12 @@ exports.createUser = (req, res) => {
 exports.allUsers = (req, res) => {
   User.find({},
     (err, users) => {
-      res.json(users)
+      res.json(users.map( user => {
+        return {
+          username: user.username,
+          _id: user.id,
+        }
+      }))
     }
   )
 }

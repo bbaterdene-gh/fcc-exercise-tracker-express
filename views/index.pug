@@ -22,11 +22,13 @@ block content
           input.w-full.rounded.my-2.px-2.leading-7.border(placeholder="username" name="username" required)
           button.w-full.bg-gray-400.border-none.rounded.py-2(type="submit") Submit
 
-        form.bg-green-400.px-4.py-8.rounded.my-2.w-72
+        form.bg-green-400.px-4.py-8.rounded.my-2.w-72#add-exercise-form(method="POST")
           h3.text-xl.font-bold Add exercises
           p.bg-yellow-200.mt-4.mb-2.px-2.rounded POST /api/users/:_id/exercises
-          input.w-full.rounded.my-2.px-2.leading-7.border(placeholder=":_id")
-          input.w-full.rounded.my-2.px-2.leading-7.border(placeholder="description*")
-          input.w-full.rounded.my-2.px-2.leading-7.border(placeholder="duration* (mins.)")
-          input.w-full.rounded.my-2.px-2.leading-7.border(placeholder="date (yyyy-mm-dd)")
+          input.w-full.rounded.my-2.px-2.leading-7.border#uid(placeholder=":_id" required name="uid" type="text")
+          input.w-full.rounded.my-2.px-2.leading-7.border#description(placeholder="description*" required name="description" type="text")
+          input.w-full.rounded.my-2.px-2.leading-7.border#duration(placeholder="duration* (mins.)" required name="duration" type="number")
+          input.w-full.rounded.my-2.px-2.leading-7.border#date(placeholder="date (yyyy-mm-dd)" name="date" type="date")
           button.w-full.bg-gray-400.border-none.rounded.py-2(type="submit") Submit
+
+  script(src="/javascripts/index.js")
