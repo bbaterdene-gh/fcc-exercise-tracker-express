@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "yarn run css:prod && node ./bin/www",
-    "start:dev": "nodemon ./bin/www & yarn run css:watch",
+    "start": "npm run css:prod && node ./bin/www",
+    "start:dev": "nodemon ./bin/www & npm run css:watch",
     "css:prod": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css --minify",
-    "css:watch": "watch 'yarn run css:dev' ./views",
+    "css:watch": "watch 'npm run css:dev' ./views",
     "css:dev": "postcss public/stylesheets/tailwind.css -o public/stylesheets/style.css"
   },
   "dependencies": {
