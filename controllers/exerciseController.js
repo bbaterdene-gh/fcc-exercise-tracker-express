@@ -21,7 +21,7 @@ exports.createExercise = async(req, res) => {
     _id,
     username: user.username,
     date: exercise.date.toDateString(),
-    duration,
+    duration: exercise.duration,
     description,
   })
 }
