@@ -37,7 +37,7 @@ exports.allExerciseForUser = async (req, res) => {
     _id,
     username: user.username,
     count: user.logs.length,
-    logs: user.logs.map( log => {
+    log: user.logs.map( log => {
       return {
         description: log.description,
         duration: log.duration,
