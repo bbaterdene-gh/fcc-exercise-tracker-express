@@ -29,10 +29,34 @@ exports.createExercise = async(req, res) => {
 exports.allExerciseForUser = async (req, res) => {
   const _id = req.params._id
 
-  const user = await User.findOne({ _id })
-      .populate('logs')
-      .exec()
+  const { from, to, limit } = req.query
 
+  let populateQuery = {
+    path: 'logs',
+    match: {},
+  }
+  if (from && Date.parse(from)) {
+    populateQuery.match.date = {
+      $gte: new Date(from) 
+    }
+  }
+
+  if (to && Date.parse(to)) {
+    populateQuery.match.date = {
+      ...populateQuery.match.date,
+      $lt: new Date(to) 
+    }
+  }
+
+  if (limit && !isNaN(limit)) {
+    populateQuery.options = {
+      limit: limit
+    }
+  }
+
+  const user = await User.findOne({ _id })
+      .populate(populateQuery)
+  
   res.json({
     _id,
     username: user.username,
